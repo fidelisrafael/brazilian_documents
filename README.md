@@ -10,6 +10,7 @@ Atualmente existem **validadores**(e não geradores) para:
 
 Essa gem é construída em cima da gem [**digit_checksum**](https://github.com/fidelisrafael/digit_checksum), que torna todo o processo muito mais simples e padronizado!
 
+Se você deseja validar `Inscrição Estadual` e integração dos validadores com models do ActiveRecord, veja a gem [`asseinfo/br_documents`](https://github.com/asseinfo/br_documents)
 
 ---
 
