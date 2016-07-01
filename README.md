@@ -47,7 +47,10 @@ Nos exemplos abaixo, a classe `BRDocuments::CPF` será utilizada para detalhar a
 
 ---
 
-#### Validar Documento
+Você pode usar essa biblioteca para:
+
+
+#### Validar documento
 
 ```ruby
 require 'br_documents'
