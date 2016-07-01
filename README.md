@@ -1,4 +1,4 @@
-# BRDocuments
+# Brazilian Documents
 
 Esta gem tem como proposta ser um repositório com os principais validadores de documentos **oficiais do Brasil**.
 Atualmente existem **validadores**(e não geradores) para:
@@ -10,6 +10,7 @@ Atualmente existem **validadores**(e não geradores) para:
 
 Essa gem é construída em cima da gem [**digit_checksum**](https://github.com/fidelisrafael/digit_checksum), que torna todo o processo muito mais simples e padronizado!
 
+
 ---
 
 ## Instalação
@@ -17,7 +18,7 @@ Essa gem é construída em cima da gem [**digit_checksum**](https://github.com/f
 Adicione no seu Gemfile:
 
 ```ruby
-gem 'br_documents'
+gem 'brazilian_documents'
 ```
 
 E execute:
@@ -26,7 +27,7 @@ E execute:
 
 Ou então instale separadamente (e globalmente) com:
 
-    $ gem install br_documents
+    $ gem install brazilian_documents
 
 ---
 
