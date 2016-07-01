@@ -87,15 +87,18 @@ require 'br_documents'
 
 BRDocuments::CPF.pretty_formatted(number) # (XXX.XXX.XXX-XX)
 
-BRDocuments::CPF.normalize_document_number(number) # retorna CPF normalizado como Array ([X,X,X,X,X,X,X,X,X,X,X,X])
+# Retorna CPF normalizado como Array ([X,X,X,X,X,X,X,X,X,X,X,X])
+BRDocuments::CPF.normalize_document_number(number)
 
-BRDocuments::CPF.normalize_document_number_to_s(number) # retorna CPF normalizado como String (XXXXXXXXXXXX)
+# Retorna CPF normalizado como String (XXXXXXXXXXXX)
+BRDocuments::CPF.normalize_document_number_to_s(number)
 
 # Ex:
 
 BRDocuments::CPF.pretty_formatted("48145551218") # 481.455.512-18
 
-BRDocuments::CPF.normalize_document_number("481.455.512-18") # [4, 8, 1, 4, 5, 5, 5, 1, 2, 1, 8]
+# Normaliza número e retorna como Array: [4, 8, 1, 4, 5, 5, 5, 1, 2, 1, 8]
+BRDocuments::CPF.normalize_document_number("481.455.512-18")
 
 BRDocuments::CPF.normalize_document_number_to_s("481.455.512-18") # "48145551218"
 
