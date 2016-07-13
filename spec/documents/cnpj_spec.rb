@@ -84,4 +84,12 @@ describe BRDocuments::CNPJ do
   it 'consider blank document_number as invalid document' do
     expect(BRDocuments::CNPJ.valid?('')).to eq(false)
   end
+
+  it 'generate valid documents numbers' do
+    10.times do
+      generated_doc = BRDocuments::CNPJ.generate
+
+      expect(BRDocuments::CNPJ.valid?(generated_doc)).to eq(true)
+    end
+  end
 end

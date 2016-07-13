@@ -84,4 +84,12 @@ describe BRDocuments::CPF do
   it 'consider blank document_number as invalid document' do
     expect(BRDocuments::CPF.valid?('')).to eq(false)
   end
+
+  it 'generate valid documents numbers' do
+    10.times do
+      generated_doc = BRDocuments::CPF.generate
+
+      expect(BRDocuments::CPF.valid?(generated_doc)).to eq(true)
+    end
+  end
 end
