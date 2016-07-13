@@ -14,6 +14,10 @@ module BRDocuments
     # match format such as: 99.999.999/9999-99 | 99-999-999/9999-99 | 99999999/999999 | 99999999999999
     valid_format_regexp %r{(\d{2})[-.]?(\d{3})[-.]?(\d{3})[\/]?(\d{4})[-.]?(\d{2})}
 
+    # mask utilized to prettify doc number
     pretty_format_mask %(%s.%s.%s/%s-%s)
+
+    # numbers sampled to generate new document numbers
+    generator_numbers (0..9).to_a
   end
 end

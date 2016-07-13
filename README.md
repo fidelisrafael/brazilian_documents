@@ -1,7 +1,7 @@
 # Brazilian Documents
 
 Esta gem tem como proposta ser um repositório com os principais validadores de documentos **oficiais do Brasil**.
-Atualmente existem **validadores**(e não geradores) para:
+Atualmente existem **validadores e geradores** para os seguintes documentos:
 
 * CPF
 * CNPJ
@@ -51,6 +51,17 @@ Nos exemplos abaixo, a classe `BRDocuments::CPF` será utilizada para detalhar a
 
 Você pode usar essa biblioteca para:
 
+#### Gerar números [falsos]
+
+```ruby
+require 'br_documents'
+
+BRDocuments::CPF.generate # "585.483.998-99"
+BRDocuments::CPF.generate(false) # "00670564826" -- sem formatação
+
+BRDocuments::CNPJ.generate # "53.091.177/2847-09"
+
+```
 
 #### Validar documento
 
@@ -60,7 +71,7 @@ require 'br_documents'
 BRDocuments::CPF.valid?(number) # verifica se um CPF é valido
 BRDocuments::CPF.invalid?(number) # verifica se um CPF é inválido
 
-# Ex: 
+### Exemplos:
 
 BRDocuments::CPF.valid?("481.455.512-18") # true
 BRDocuments::CPF.valid?("481.455.512-20") # false
@@ -76,7 +87,7 @@ require 'br_documents'
 # Calcula os dígitos verificadores de um CPF(number deve ser composto de 9 dígitos
 BRDocuments::CPF.calculate_verify_digits(number)
 
-# Ex:
+### Exemplos:
 
 # Número válido
 BRDocuments::CPF.calculate_verify_digits("481.455.512") # [1, 8]
@@ -93,19 +104,20 @@ require 'br_documents'
 BRDocuments::CPF.pretty_formatted(number) # (XXX.XXX.XXX-XX)
 
 # Retorna CPF normalizado como Array ([X,X,X,X,X,X,X,X,X,X,X,X])
-BRDocuments::CPF.normalize_document_number(number)
+BRDocuments::CPF.normalize_number(number)
 
 # Retorna CPF normalizado como String (XXXXXXXXXXXX)
-BRDocuments::CPF.normalize_document_number_to_s(number)
+BRDocuments::CPF.normalize_number_to_s(number)
 
-# Ex:
+### Exemplos:
 
-BRDocuments::CPF.pretty_formatted("48145551218") # 481.455.512-18
+# Retorna CPF formatado
+BRDocuments::CPF.pretty_formatted("48145551218") # 481.455.512-18 
 
 # Normaliza número e retorna como Array: [4, 8, 1, 4, 5, 5, 5, 1, 2, 1, 8]
-BRDocuments::CPF.normalize_document_number("481.455.512-18")
+BRDocuments::CPF.normalize_number("481.455.512-18")
 
-BRDocuments::CPF.normalize_document_number_to_s("481.455.512-18") # "48145551218"
+BRDocuments::CPF.normalize_number_to_s("481.455.512-18") # "48145551218"
 
 ```
 ---
