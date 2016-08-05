@@ -1,5 +1,3 @@
-require "digit_checksum"
-
 module BRDocuments
   class CPF < ::DigitChecksum::BaseDocument
     digits_verify_mask first:  %w(10 9 8 7 6 5 4 3 2),
