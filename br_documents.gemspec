@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["rafa_fidelis@yahoo.com.br"]
 
   spec.summary       = %q{Coleção de validadores para documentos brasileiros}
-  spec.description   = %q{Esta gem implementa vários validadores de documentos oficiais brasileiros, como CPF, CNPJ, RG e Título de Eleitor}
+  spec.description   = %q{Esta gem implementa vários validadores de documentos oficiais brasileiros, como CPF, CNPJ, Inscrição estadual, RG e Título de Eleitor}
   spec.homepage      = "https://github.com/fidelisrafael/brazilian_documents"
   spec.license       = "MIT"
 
@@ -20,8 +20,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'digit_checksum', '~> 0.1.2'
-  spec.add_development_dependency "bundler", "~> 1.12"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_dependency 'digit_checksum', '~> 0.2.1'
+  spec.add_development_dependency 'bundler','~> 1.12'
+  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rspec', '~> 3.0'
 end

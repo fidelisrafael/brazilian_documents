@@ -4,4 +4,3 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'pry'
-gem 'digit_checksum', '0.1.2', path: '/home/fidelizzz/projects/pessoal/ruby/opensource/digit_checksum'
