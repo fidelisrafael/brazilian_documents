@@ -1,12 +1,11 @@
 # http://www.sintegra.gov.br/Cad_Estados/cad_AP.html
 module BRDocuments
   class IE::AP < IE::Base
-    digits_verify_mask first: %w(9 8 7 6 5 4 3 2)
+    set_verify_digits_weights first: %w(9 8 7 6 5 4 3 2)
 
-    valid_format_regexp %r{(03)[-.]?(\d{5})[-.]?(\d{1})}
+    set_valid_format_regexp %r{(03)[-.]?(\d{5})[-.]?(\d{1})}
 
-    # mask utilized to prettify doc number
-    pretty_format_mask %(%s%s-%s)
+    set_pretty_format_mask %(%s%s-%s)
 
     # In RANGE_VALUES we remove the first '0' character so
     # numbers are't treated as octal numberss
@@ -18,7 +17,7 @@ module BRDocuments
 
     DEFAULT_RANGE_CONF = [0, 0]
 
-    FIXED_INITIAL_NUMBERS = [0, 3].freeze
+    set_fixed_initial_numbers [0, 3]
 
     class << self
       def digit_verify(quotient_rest, division_factor)

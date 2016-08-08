@@ -4,10 +4,9 @@ module BRDocuments
     module BA
       class Base < IE::Base
 
-        valid_format_regexp %r{(\d{6,7})[-.]?(\d{2})}
+        set_valid_format_regexp %r{(\d{6,7})[-.]?(\d{2})}
 
-        # mask utilized to prettify doc number
-        pretty_format_mask %(%s-%s)
+        set_pretty_format_mask %(%s-%s)
 
         # I don't know why in Bahia they calculate the LAST digit FIRST and
         # the FIRST digit LAST, wtf

@@ -1,13 +1,15 @@
-# This class is a wrapper/interface to glue all Bahia IE generator and validators
+# This class is a wrapper/interface to glue all Bahia IE generators and validators
 module BRDocuments
   module IE::BA
     class << self
 
       DIGITS_MOD_10 = [0,1,2,3,4,5,8]
-      DIGITS_MOD_11 = [6, 7, 9]
+      DIGITS_MOD_11 = [6,7,9]
 
       METHODS_TO_DELEGATE = [
         :calculate_verify_digits,
+        :remove_verify_digits!,
+        :append_verify_digits,
         :normalize_number_to_s,
         :clear_document_number,
         :normalize_number,

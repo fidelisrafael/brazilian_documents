@@ -4,8 +4,8 @@ module BRDocuments
   module IE
     class BA::Digits8::Modulo10 < IE::BA::Modulo10
 
-      digits_verify_mask first: %w(7 6 5 4 3 2),
-                         last:  %w(8 7 6 5 4 3 2)
+      set_verify_digits_weights first: %w(7 6 5 4 3 2),
+                                last:  %w(8 7 6 5 4 3 2)
 
     end
   end

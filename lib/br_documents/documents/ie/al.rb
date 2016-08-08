@@ -1,14 +1,13 @@
 # http://www.sintegra.gov.br/Cad_Estados/cad_AL.html
 module BRDocuments
   class IE::AL < IE::Base
-    digits_verify_mask first: %w(9 8 7 6 5 4 3 2)
+    set_verify_digits_weights first: %w(9 8 7 6 5 4 3 2)
 
-    valid_format_regexp %r{(24)[-.]?(\d{6})[-.]?(\d{1})}
+    set_valid_format_regexp %r{(24)[-.]?(\d{6})[-.]?(\d{1})}
 
-    # mask utilized to prettify doc number
-    pretty_format_mask %(%s.%s-%s)
+    set_pretty_format_mask %(%s.%s-%s)
 
-    FIXED_INITIAL_NUMBERS = [2, 4].freeze
+    set_fixed_initial_numbers [2, 4]
 
     class << self
       def calculate_digits_sum_rest(sum, quotient, division_factor)

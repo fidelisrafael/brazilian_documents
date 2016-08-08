@@ -3,13 +3,13 @@ module BRDocuments
   module IE
     class Base < ::DigitChecksum::BaseDocument
       # MOD 11
-      division_factor_modulo 11
+      set_division_factor_modulo 11
 
       # remove any non digit from document number
-      clear_number_regexp %r{[^(\d+)]}
+      set_clear_number_regexp %r{[^(\d+)]}
 
       # numbers sampled to generate new document numbers
-      generator_numbers (0..9).to_a
+      set_generator_numbers (0..9).to_a
 
       # Start from first position
       INITIAL_FIX_NUMBERS_POSITION = 0
@@ -31,6 +31,10 @@ module BRDocuments
 
         def fixed_initial_numbers
           self.const_get('FIXED_INITIAL_NUMBERS')
+        end
+
+        def set_fixed_initial_numbers(initial_numbers)
+          self.const_set('FIXED_INITIAL_NUMBERS', initial_numbers).freeze
         end
 
         def self.digit_verify(quotient_rest, division_factor)
