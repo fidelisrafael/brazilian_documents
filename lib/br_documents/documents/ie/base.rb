@@ -22,7 +22,11 @@ module BRDocuments
             get_generator_numbers.sample.to_i
           }
 
-          numbers.insert(initial_fix_numbers_position, fixed_initial_numbers).flatten
+          fixed_initial_numbers.each_with_index {|number, index|
+            numbers.insert(initial_fix_numbers_position + index, number)
+          }
+
+          numbers
         end
 
         def initial_fix_numbers_position
@@ -47,4 +51,3 @@ module BRDocuments
     end
   end
 end
-

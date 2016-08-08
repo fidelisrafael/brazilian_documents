@@ -9,6 +9,14 @@ module BRDocuments
 
     set_fixed_initial_numbers [2, 4]
 
+    COMPANIES_TYPES = {
+      "0": "Normal",
+      "3": "Produtor Rural",
+      "5": "Substituta",
+      "7": "Micro-Empresa Ambulante",
+      "8": "Micro-Empresa"
+    }
+
     class << self
       def calculate_digits_sum_rest(sum, quotient, division_factor)
         (sum - (quotient.to_i * division_factor))
@@ -21,7 +29,11 @@ module BRDocuments
       def calculate_digits_sum(document_number, mask)
         (super * 10)
       end
+
+      def company_type(number)
+        # .to_s.to_sym to avoid nil.to_sym
+        number.match(/^\d{2}(\d{1})/) { COMPANIES_TYPES[$1.to_s.to_sym] }
+      end
     end
   end
 end
-

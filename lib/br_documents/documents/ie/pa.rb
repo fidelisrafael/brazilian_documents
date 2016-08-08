@@ -10,4 +10,3 @@ module BRDocuments
     set_fixed_initial_numbers [1, 5]
   end
 end
-

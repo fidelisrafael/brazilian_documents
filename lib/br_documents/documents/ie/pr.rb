@@ -9,4 +9,3 @@ module BRDocuments
     set_pretty_format_mask %(%s-%s)
   end
 end
-
