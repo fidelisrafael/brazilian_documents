@@ -2,14 +2,14 @@
 module BRDocuments
    module IE::SP
     class Industria < IE::Base
-      set_root_documents_digits_count 10
+      set_root_digits_count 10
 
       set_verify_digits_positions [8, 11]
 
       set_verify_digits_weights first: %w(1 3 4 5 6 7 8 10),
                                 last:  %w(3 2 10 9 8 7 6 5 4 3 2)
 
-      set_valid_format_regexp %r{(\d{3})[-.]?(\d{3})[-.]?(\d{3})[-.]?(\d{3})}
+      set_format_regexp %r{(\d{3})[-.]?(\d{3})[-.]?(\d{3})[-.]?(\d{3})}
 
       set_pretty_format_mask %(%s.%s.%s.%s)
 

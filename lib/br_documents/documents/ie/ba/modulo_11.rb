@@ -11,7 +11,7 @@ module BRDocuments
         FIXED_INITIAL_NUMBERS = %w(6 7 9)
 
         # Force modulo 11
-        set_division_factor_modulo 11
+        set_division_modulo 11
 
         #def self.digit_verify(quotient_rest, division_factor)
         #  rest = (division_factor - quotient_rest)

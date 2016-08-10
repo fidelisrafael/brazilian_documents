@@ -3,7 +3,7 @@ module BRDocuments
   module IE
     class Base < ::DigitChecksum::BaseDocument
       # MOD 11
-      set_division_factor_modulo 11
+      set_division_modulo 11
 
       # remove any non digit from document number
       set_clear_number_regexp %r{[^(\d+)]}
@@ -16,9 +16,28 @@ module BRDocuments
       # No one
       FIXED_INITIAL_NUMBERS = []
 
+      def valid?
+        return false unless valid_fixed_numbers?
+
+        return super
+      end
+
+      def valid_fixed_numbers?
+        self.class.valid_fixed_numbers?(self.number)
+      end
+
       class << self
+        def valid_fixed_numbers?(number)
+          number = new(number).normalize
+
+          initial_pos = initial_fix_numbers_position
+          fixed_numbers = fixed_initial_numbers
+
+          return (number.slice(initial_pos, fixed_numbers.size) == fixed_numbers)
+        end
+
         def generate_root_numbers
-          numbers = (root_document_digits_count - fixed_initial_numbers.size).times.map {
+          numbers = (root_digits_count - fixed_initial_numbers.size).times.map {
             get_generator_numbers.sample.to_i
           }
 

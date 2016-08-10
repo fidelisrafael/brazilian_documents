@@ -4,11 +4,11 @@ module BRDocuments
     set_verify_digits_weights first: %w(1 2 1 2 1 2 1 2 1 2 1 2),
                               last:  %w(3 2 11 10 9 8 7 6 5 4 3 2)
 
-    set_valid_format_regexp %r{^(\d{3})[-.]?(\d{3})[-.]?(\d{3})[-.]?[\/]?(\d{2})(\d{2})}
+    set_format_regexp %r{^(\d{3})[-.]?(\d{3})[-.]?(\d{3})[-.]?[\/]?(\d{2})(\d{2})}
 
     set_pretty_format_mask %(%s.%s.%s/%s%s)
 
-    set_root_documents_digits_count 11
+    set_root_digits_count 11
 
     class << self
       def calculate_digits_data(document_number, mask, division_factor)

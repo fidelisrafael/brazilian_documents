@@ -4,7 +4,7 @@ module BRDocuments
     module BA
       class Base < IE::Base
 
-        set_valid_format_regexp %r{(\d{6,7})[-.]?(\d{2})}
+        set_format_regexp %r{(\d{6,7})[-.]?(\d{2})}
 
         set_pretty_format_mask %(%s-%s)
 
