@@ -64,12 +64,6 @@ module BRDocuments
           self.const_set('FIXED_INITIAL_NUMBERS', initial_numbers).freeze
         end
 
-        def self.digit_verify(quotient_rest, division_factor)
-          rest = (division_factor - quotient_rest)
-
-          return [0, 1].member?(quotient_rest.to_i) ? 0 : rest
-        end
-
         protected
         def insert_fixed_numbers(numbers)
           fixed_initial_numbers.each_with_index {|number, index|
