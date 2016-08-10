@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe BRDocuments::IE::PA do
+describe BRDocuments::IE::PB do
 
   it 'must generate root numbers with fixed numbers' do
     number = described_class.generate_root_numbers # without formatting
@@ -22,7 +22,7 @@ describe BRDocuments::IE::PA do
   end
 
   it 'pretty formats an IE number' do
-    expect(described_class.pretty("150696655")).to eq("15.069.665-5")
+    expect(described_class.pretty("160158230")).to eq("16.015.823-0")
   end
 
   it 'must prettify IE number including initial fixed numbers' do
@@ -32,36 +32,38 @@ describe BRDocuments::IE::PA do
   end
 
   it 'remove an IE number formatting' do
-    expect(described_class.strip('15.069.665-5')).to eq('150696655')
+    expect(described_class.strip('16.015.823-0')).to eq('160158230')
   end
 
   it 'must validate correctly valid IE numbers' do
-    expect(described_class.valid?('15.069.665-5')).to be_truthy
-    expect(described_class.valid?('15069665-5')).to be_truthy
-    expect(described_class.valid?('150696655')).to be_truthy
+    expect(described_class.valid?('16.015.823-0')).to be_truthy
+    expect(described_class.valid?('16015823-0')).to be_truthy
+    expect(described_class.valid?('160158230')).to be_truthy
   end
 
   it 'is invalid with wrong digits number' do
-    expect(described_class.invalid?('1506966551')).to be_truthy
-    expect(described_class.invalid?('1510696655')).to be_truthy
+    expect(described_class.invalid?('16.015.823-01')).to be_truthy
+    expect(described_class.invalid?('1610158230')).to be_truthy
   end
 
   it 'must calculate verify digits' do
-    expected = [5]
+    expected = [0]
 
-    expect(described_class.calculate_verify_digits("15.069.665-5")).to eq(expected)
-    expect(described_class.calculate_verify_digits("15.069.665")).to eq(expected)
-    expect(described_class.calculate_verify_digits("15069665")).to eq(expected)
+    expect(described_class.calculate_verify_digits("16.015.823-0")).to eq(expected)
+    expect(described_class.calculate_verify_digits("16015823")).to eq(expected)
+    expect(described_class.calculate_verify_digits("16.015.823")).to eq(expected)
   end
 
   it 'must validate a list of valid IE' do
     numbers = [
-      '15.999.999-5', # Exemplo Sintegra
-      '15.000.614-4', # Y Yamada Sa Comercio e Industria
-      '15.069.665-5', # ALBRAS ALUMINIO BRASILEIRO S.A
-      '15.074.998-8', # COMPANHIA DE SANEAMENTO DO PARA
-      '15.286.652-3', # Companhia Docas do Para
-      '15.050.675-9', # Banpara - Banco do Estado do Para S A 26/10/1961
+      '16.015.823-0', # Energisa
+      '16.064.797-5', # Oi
+      '16.211.981-0', # Oi Movel
+      '16.143.665-0', # Tim
+      '16.000.751-8', # Souza Cruz
+      '16.218.715-7', # Ambev
+      '16.164.850-9', # Claro
+      '16.158.896-4', # Carrefour Comercio e Industria Ltda
     ].each do |number|
       ie_object = described_class.new(number)
 
