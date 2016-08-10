@@ -13,3 +13,6 @@ end
 # Candidates:
 # AL
 # AM
+# CE
+# DF
+# ES
