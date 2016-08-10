@@ -1,11 +1,38 @@
-# http://www.sintegra.gov.br/Cad_Estados/cad_PE.html
+# This class is a wrapper/interface to glue all PE IE generators and validators
 module BRDocuments
-  class IE::PE < IE::Base
-    set_verify_digits_weights first: %w(8 7 6 5 4 3 2),
-                              last:  %w(9 8 7 6 5 4 3 2)
+  module IE::PE
+    class << self
 
-    set_format_regexp %r{^(\d{7})[-.]?(\d{2})}
+      # Delegate all methods to specific class
+      def method_missing(method, *args)
+        class_for_number(args[0]).public_send(method, *args)
+      end
 
-    set_pretty_format_mask %(%s-%s)
+      def generate(formatted = true, legacy = false)
+        class_for(legacy).generate(formatted)
+      end
+
+      def generate_root_numbers(legacy = false)
+        class_for(legacy).generate_root_numbers
+      end
+
+      def legacy?(number)
+        [13,14].member?(number.to_s.gsub(/[^\d+]/, '').size)
+      end
+
+      protected
+      def class_for_number(number)
+        class_for(legacy?(number))
+      end
+
+      def class_for(legacy)
+        class_name = class_name_for(legacy)
+        IE::PE.const_get(class_name)
+      end
+
+      def class_name_for(legacy = false)
+        legacy ? "Legacy" : "Current"
+      end
+    end
   end
 end

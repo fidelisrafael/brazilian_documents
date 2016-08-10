@@ -6,7 +6,6 @@ module BRDocuments
       DIGITS_MOD_10 = [0,1,2,3,4,5,8]
       DIGITS_MOD_11 = [6,7,9]
 
-
       # Delegate all methods to specific class
       def method_missing(method, *args)
         class_for_document_number(args[0]).public_send(method, *args)
