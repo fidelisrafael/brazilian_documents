@@ -12,13 +12,6 @@ module BRDocuments
 
         # Force modulo 11
         set_division_modulo 11
-
-        #def self.digit_verify(quotient_rest, division_factor)
-        #  rest = (division_factor - quotient_rest)
-        #
-        # return [0, 1].member?(quotient_rest.to_i) ? 0 : rest
-        #end
-
       end
     end
   end

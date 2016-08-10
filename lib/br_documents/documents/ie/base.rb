@@ -23,7 +23,13 @@ module BRDocuments
       end
 
       def valid_fixed_numbers?
+        return true unless validate_fixed_numbers?
+
         self.class.valid_fixed_numbers?(self.number)
+      end
+
+      def validate_fixed_numbers?
+        true
       end
 
       class << self
@@ -41,9 +47,7 @@ module BRDocuments
             get_generator_numbers.sample.to_i
           }
 
-          fixed_initial_numbers.each_with_index {|number, index|
-            numbers.insert(initial_fix_numbers_position + index, number)
-          }
+          insert_fixed_numbers(numbers)
 
           numbers
         end
@@ -64,6 +68,15 @@ module BRDocuments
           rest = (division_factor - quotient_rest)
 
           return [0, 1].member?(quotient_rest.to_i) ? 0 : rest
+        end
+
+        protected
+        def insert_fixed_numbers(numbers)
+          fixed_initial_numbers.each_with_index {|number, index|
+            numbers.insert(initial_fix_numbers_position + index, number)
+          }
+
+          numbers
         end
       end
 

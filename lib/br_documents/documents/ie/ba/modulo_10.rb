@@ -13,10 +13,6 @@ module BRDocuments
         # Force modulo 10
         set_division_modulo 10
 
-        #def self.digit_verify(quotient_rest, division_factor)
-        #  return [0].member?(quotient_rest.to_i) ? 0 : (division_factor - quotient_rest)
-        #end
-
       end
     end
   end

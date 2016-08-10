@@ -14,4 +14,5 @@ module BRDocuments
 end
 
 # Candidates:
-# AC: digits weigths, format_regexp,
+# AC: digits weigths, format_regexp
+# AP

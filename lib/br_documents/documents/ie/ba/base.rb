@@ -10,8 +10,15 @@ module BRDocuments
 
         # I don't know why in Bahia they calculate the LAST digit FIRST and
         # the FIRST digit LAST, wtf
-        def self.calculate_verify_digits(document_number)
+        def calculate_verify_digits
           super.reverse
+        end
+
+        def self.valid_fixed_numbers?(number)
+          number = new(number).normalize
+          fixed_numbers = self.const_get('FIXED_INITIAL_NUMBERS')
+
+          fixed_numbers.member?(number[initial_fix_numbers_position].to_s)
         end
 
         def self.fixed_initial_numbers

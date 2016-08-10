@@ -6,44 +6,32 @@ module BRDocuments
       DIGITS_MOD_10 = [0,1,2,3,4,5,8]
       DIGITS_MOD_11 = [6,7,9]
 
-      METHODS_TO_DELEGATE = [
-        :calculate_verify_digits,
-        :remove_verify_digits!,
-        :append_verify_digits,
-        :normalize_number_to_s,
-        :clear_document_number,
-        :normalize_number,
-        :pretty_formatted,
-        :clear_number,
-        :formatted,
-        :stripped,
-        :invalid?,
-        :valid?,
-        :pretty
-      ]
 
-      def generate(strict = false, formatted = true)
-        # if is strict always generate documents numbers with 8 digits
-        digit_count = strict ? 8 : rand_digits_count
-        generate_with_digits(digit_count, formatted)
+      # Delegate all methods to specific class
+      def method_missing(method, *args)
+        class_for_document_number(args[0]).public_send(method, *args)
       end
 
-      METHODS_TO_DELEGATE.each do |method|
-        define_method method do |document_number|
-          klass = class_for_document_number(document_number)
-          klass.public_send(method, document_number)
-        end
+      def generate(formatted = true, digits_count = 9, modulo = 10)
+        generator_class(digits_count, modulo).generate(formatted)
       end
 
-      protected
-      def generate_with_digits(digits, formatted)
-        generator = IE::BA.const_get("Digits#{digits}::Modulo#{rand_modulo}")
-        generator.generate(formatted)
+      def generate_root_numbers(digits_count = 9, modulo = 10)
+        generator_class(digits_count, modulo).generate_root_numbers
       end
 
       def class_for_document_number(document_number)
         class_name = class_name_for_document_number(document_number)
         IE::BA.const_get(class_name)
+      end
+
+      def rand_generate(formatted = true)
+        generate(formatted, rand_digits_count, rand_modulo)
+      end
+
+      protected
+      def generator_class(digits_count = 9, modulo = 10)
+        IE::BA.const_get("Digits#{digits_count}::Modulo#{modulo}")
       end
 
       def class_name_for_document_number(document_number)
