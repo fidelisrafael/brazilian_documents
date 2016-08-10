@@ -63,6 +63,7 @@ describe BRDocuments::IE::MG do
       '001094739.00-90', # MINAS GERAIS EDUCACAO SA
       '062013766.01-45', # BANCO MERCANTIL DO BRASIL S A
       '062013766.00-64', # BANCO MERCANTIL DO BRASIL S A (baixado)
+      '062001540.00-92', # CIA DE FIACAO E TECIDOS CEDRO E CACHOEIRA 10/05/1927
     ].each do |number|
       ie_object = described_class.new(number)
 
