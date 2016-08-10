@@ -7,7 +7,7 @@ module BRDocuments
 
     set_format_regexp %r{^(07)[-.]?(\d{3})[-.]?(\d{3})[\/-]?(\d{3})[-.]?(\d{2})}
 
-    set_pretty_format_mask %(%s.%s.%s-%s)
+    set_pretty_format_mask %(%s.%s.%s.%s-%s)
 
     set_fixed_initial_numbers [0, 7]
   end
