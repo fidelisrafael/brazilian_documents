@@ -25,6 +25,8 @@ RSpec.shared_examples "IE basic specs" do
 
   it 'pretty formats an IE number' do
     @format_examples.each do |stripped, pretty|
+      pretty = pretty[0] if pretty.is_a?(Array)
+
       expect(described_class.pretty(stripped)).to eq(pretty)
     end
   end
@@ -41,6 +43,8 @@ RSpec.shared_examples "IE basic specs" do
 
   it 'remove an IE number formatting' do
     @format_examples.each do |stripped, pretty|
+      pretty, stripped = *pretty if pretty.is_a?(Array)
+
       expect(described_class.strip(pretty)).to eq(stripped)
     end
   end

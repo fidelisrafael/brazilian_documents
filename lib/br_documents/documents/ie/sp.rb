@@ -3,53 +3,36 @@ module BRDocuments
   module IE::SP
     class << self
 
-      METHODS_TO_DELEGATE = [
-        :calculate_verify_digits,
-        :remove_verify_digits!,
-        :append_verify_digits,
-        :normalize_number_to_s,
-        :clear_document_number,
-        :normalize_number,
-        :pretty_formatted,
-        :clear_number,
-        :formatted,
-        :stripped,
-        :invalid?,
-        :valid?,
-        :pretty
-      ]
+      # Delegate all methods to specific class
+      def method_missing(method, *args)
+        class_for_number(args[0]).public_send(method, *args)
+      end
 
-      def generate(rural = false, formatted = true)
-        document = rural ? "P" : ""
-        class_for_document_number(document).generate(formatted)
+      def generate(formatted = true, rural = false)
+        class_for(rural).generate(formatted)
       end
 
       def generate_root_numbers(rural = false)
-        document = rural ? "P" : ""
-        class_for_document_number(document).generate_root_numbers
+        class_for(rural).generate_root_numbers
       end
 
-      METHODS_TO_DELEGATE.each do |method|
-        define_method method do |document_number|
-          klass = class_for_document_number(document_number)
-          klass.public_send(method, document_number)
-        end
+      def rural?(number)
+        number.to_s.match(/^P/) && [11, 12].member?(number.to_s.gsub(/[^\d]/, '').size)
       end
 
       protected
-      def class_for_document_number(document_number)
-        class_name = class_name_for_document_number(document_number)
+      def class_for_number(number)
+        class_for(rural?(number))
+      end
+
+      def class_for(rural)
+        class_name = class_name_for(rural)
         IE::SP.const_get(class_name)
       end
 
-      def class_name_for_document_number(document_number)
-        rural?(document_number) ? "Rural" : "Industria"
-      end
-
-      def rural?(document_number)
-        document_number.to_s.match(/^P/)
+      def class_name_for(rural = false)
+        rural ? "Rural" : "Industria"
       end
     end
   end
 end
-

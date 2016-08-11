@@ -12,17 +12,9 @@ module BRDocuments
 
       set_pretty_format_mask %(P%s-%s.%s/%s)
 
-      class << self
-        def valid?(document_number)
-          return false unless document_number.to_s.match(/^P/)
-
-          super(document_number)
-        end
-
-        # the last number from rest, WHY São Paulo??? IDK
-        def digit_verify(quotient_rest, division_factor)
-          quotient_rest.to_i.to_s[-1].to_i
-        end
+      # the last number from rest, WHY São Paulo??? IDK
+      def calc_verify_digit(quotient_rest)
+        quotient_rest.to_i.to_s[-1].to_i
       end
     end
   end
