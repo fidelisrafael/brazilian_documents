@@ -21,6 +21,7 @@ describe BRDocuments::IE::RS do
     }
 
     @valid_existent_numbers = [
+      '224/3658792', # Exemplo Sintegra
       '132/0117934', # GERDAU ACOS LONGOS S/A 2005
       '008/0181198', # IPIRANGA PRODUTOS DE PETROLEO S/A 2009
       '120/0082831', # COPESUL COMERCIO DE MATERIAL DE CONSTRUCAO LTDA
