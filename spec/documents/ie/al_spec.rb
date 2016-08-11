@@ -47,4 +47,11 @@ describe BRDocuments::IE::AL do
       expect(described_class.company_type(number)).to_not be_nil
     }
   end
+
+  it 'must handle companies type methods' do
+    expect(described_class.company_type('24.864992-2')).to eq('Micro-Empresa')
+    expect(described_class.company_type('24.577875-6')).to eq('Substituta')
+    expect(described_class.company_type_digit('24.577875-6')).to eq('5')
+    expect(described_class.company_type_digit('24.885944-7')).to eq('8')
+  end
 end
