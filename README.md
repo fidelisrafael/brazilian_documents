@@ -128,20 +128,27 @@ BRDocuments::CPF.stripped("481.455.512-18") # "48145551218"
 
 Além disso, alguns estados possuem **mais de 1 padrão de inscrição estadual válido** (PQ BRASIL???), que podem ser definidos como **atual** e **legado**, esses estados são:
 
-* BA - Possui 4 formatos de números válidos
+<br />
+
+* **BA** - Possui **4 formatos** de números válidos
   * 8 dígitos calculados com modulo 10
   * 8 dígitos calculados com modulo 11
   * 9 dígitos calculados com modulo 10
   * 9 dígitos calculados com modulo 11
-* PE - Possui 2 formatos de números válidos
+
+* **PE** - Possui **2 formatos** de números válidos
   * Legado (14 dígitos)
   * Atual (9 dígitos)
-* RO - Possui 2 formatos de números válidos
+
+* **R** - Possui **2 formatos** de números válidos
   * Legado (9 dígitos)
   * Atual (14 dígitos)
-* SP - Possui 2 formatos de números válidos
+
+* **SP** - Possui **2 formatos** de números válidos
   * Industrial (12 dígitos), com dígitos verificadores no "meio" do número
   * Rural (12 dígitos), com dígitos verificadores no "meio" do número
+
+---
 
 ### API Inscrições Estaduais
 
