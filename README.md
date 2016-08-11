@@ -18,7 +18,7 @@ Essa gem é construída em cima da gem [**digit_checksum**](https://github.com/f
 Adicione no seu Gemfile:
 
 ```ruby
-gem 'brazilian_documents', '~> 0.2.3'
+gem 'brazilian_documents', '~> 0.1.2'
 ```
 
 E execute:
