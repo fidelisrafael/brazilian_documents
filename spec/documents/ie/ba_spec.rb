@@ -84,7 +84,7 @@ describe BRDocuments::IE::BA do
         number = described_class.generate(true, *arguments)
         expect(described_class.valid?(number)).to be_truthy
 
-        klass = described_class.class_for_document_number(number)
+        klass = described_class.class_for_number(number)
         expect(klass).to be(doc_class)
       }
     end
@@ -92,7 +92,7 @@ describe BRDocuments::IE::BA do
 
   it 'must pick 9 digits and use modulo 10 for new generated documents' do
     number = described_class.generate
-    klass = described_class.class_for_document_number(number)
+    klass = described_class.class_for_number(number)
 
     expect(klass).to be(described_class.const_get('Digits9::Modulo10'))
   end

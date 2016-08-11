@@ -9,15 +9,13 @@ module BRDocuments
 
       set_pretty_format_mask %(%s-%s)
 
-      class << self
-        def digit_verify(quotient_rest, division_factor)
-          rest = (division_factor - quotient_rest).to_i
+      def calc_verify_digit(quotient_rest)
+        rest = (get_division_modulo - quotient_rest).to_i
 
-          # if rest has two digits(checkdigit must be a single digit), subtract 10
-          return 10 - rest if rest >= 10
+        # if rest has two digits(checkdigit must be a single digit), force 0
+        return rest - 10 if rest >= 10
 
-          rest
-        end
+        rest
       end
     end
   end

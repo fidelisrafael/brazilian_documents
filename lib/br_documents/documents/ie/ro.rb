@@ -3,23 +3,16 @@ module BRDocuments
   module IE::RO
     class << self
 
-      METHODS_TO_DELEGATE = [
-        :calculate_verify_digits,
-        :remove_verify_digits!,
-        :append_verify_digits,
-        :normalize_number_to_s,
-        :clear_document_number,
-        :normalize_number,
-        :pretty_formatted,
-        :clear_number,
-        :formatted,
-        :stripped,
-        :invalid?,
-        :valid?,
-        :pretty
-      ]
+      def convert_legacy(legacy_number)
+        new(legacy_number.gsub(/^(\d{3})/, '00000000')).pretty # remove city code
+      end
 
-      def generate(legacy = false, formatted = true)
+      # Delegate all methods to specific class
+      def method_missing(method, *args)
+        class_for_number(args[0]).public_send(method, *args)
+      end
+
+      def generate(formatted = true, legacy = false)
         class_for(legacy).generate(formatted)
       end
 
@@ -27,18 +20,15 @@ module BRDocuments
         class_for(legacy).generate_root_numbers
       end
 
-      METHODS_TO_DELEGATE.each do |method|
-        define_method method do |document_number|
-          klass = class_for_document_number(document_number)
-          klass.public_send(method, document_number)
-        end
+      def legacy?(number)
+        [8, 9].member?(number.to_s.gsub(/[^\d+]/, '').size)
+      end
+
+      def class_for_number(number)
+        class_for(legacy?(number))
       end
 
       protected
-      def class_for_document_number(document_number)
-        class_for(legacy?(document_number))
-      end
-
       def class_for(legacy)
         class_name = class_name_for(legacy)
         IE::RO.const_get(class_name)
@@ -46,10 +36,6 @@ module BRDocuments
 
       def class_name_for(legacy = false)
         legacy ? "Legacy" : "Current"
-      end
-
-      def legacy?(document_number)
-        BRDocuments::IE::Base.normalize_number(document_number).size == 9
       end
     end
   end
