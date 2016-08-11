@@ -18,7 +18,7 @@ Essa gem é construída em cima da gem [**digit_checksum**](https://github.com/f
 Adicione no seu Gemfile:
 
 ```ruby
-gem 'brazilian_documents'
+gem 'brazilian_documents', '~> 0.2.3'
 ```
 
 E execute:
@@ -104,10 +104,10 @@ require 'br_documents'
 BRDocuments::CPF.pretty(number) # (XXX.XXX.XXX-XX)
 
 # Retorna CPF normalizado como Array ([X,X,X,X,X,X,X,X,X,X,X,X])
-BRDocuments::CPF.normalized(number)
+BRDocuments::CPF.normalize(number)
 
 # Retorna CPF normalizado como String (XXXXXXXXXXXX)
-BRDocuments::CPF.stripped(number)
+BRDocuments::CPF.strip(number)
 
 ### Exemplos:
 
@@ -115,9 +115,9 @@ BRDocuments::CPF.stripped(number)
 BRDocuments::CPF.pretty("48145551218") # 481.455.512-18
 
 # Normaliza número e retorna como Array: [4, 8, 1, 4, 5, 5, 5, 1, 2, 1, 8]
-BRDocuments::CPF.normalized("481.455.512-18")
+BRDocuments::CPF.normalize("481.455.512-18")
 
-BRDocuments::CPF.stripped("481.455.512-18") # "48145551218"
+BRDocuments::CPF.strip("481.455.512-18") # "48145551218"
 ```
 
 ---
