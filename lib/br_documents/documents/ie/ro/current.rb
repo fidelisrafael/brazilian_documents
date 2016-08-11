@@ -9,6 +9,8 @@ module BRDocuments
 
       set_pretty_format_mask %(%s-%s)
 
+      set_fixed_digits [0,0,0,0,0,0,0]
+
       def calc_verify_digit(quotient_rest)
         rest = (get_division_modulo - quotient_rest).to_i
 
@@ -20,4 +22,3 @@ module BRDocuments
     end
   end
 end
-

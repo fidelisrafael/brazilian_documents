@@ -17,7 +17,7 @@ module BRDocuments
       end
 
       def rural?(number)
-        number.to_s.match(/^P/) && [11, 12].member?(number.to_s.gsub(/[^\d]/, '').size)
+        !!(number.to_s.match(/^P/) && [11, 12].member?(number.to_s.gsub(/[^\d]/, '').size))
       end
 
       protected
@@ -31,7 +31,7 @@ module BRDocuments
       end
 
       def class_name_for(rural = false)
-        rural ? "Rural" : "Industria"
+        rural ? "Rural" : "Industry"
       end
     end
   end

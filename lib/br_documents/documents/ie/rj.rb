@@ -1,6 +1,7 @@
 # http://www.sintegra.gov.br/Cad_Estados/cad_RJ.html
 module BRDocuments
   class IE::RJ < IE::Base
+
     set_verify_digits_weights first: %w(2 7 6 5 4 3 2)
 
     set_format_regexp %r{^(\d{2})[-.]?(\d{3})[-.]?(\d{3})}

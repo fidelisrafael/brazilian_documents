@@ -1,6 +1,7 @@
 # http://www.sintegra.gov.br/Cad_Estados/cad_RR.html
 module BRDocuments
   class IE::RR < IE::Base
+
     set_division_modulo 9
 
     set_verify_digits_weights first: %w(1 2 3 4 5 6 7 8)

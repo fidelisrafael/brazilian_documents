@@ -4,6 +4,8 @@ module BRDocuments
     class << self
 
       def convert_legacy(legacy_number)
+        klass = class_for(false)
+
         new(legacy_number.gsub(/^(\d{3})/, '00000000')).pretty # remove city code
       end
 

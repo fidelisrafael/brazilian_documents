@@ -1,7 +1,7 @@
 # http://www.sintegra.gov.br/Cad_Estados/cad_SP.html
 module BRDocuments
    module IE::SP
-    class Industria < IE::Base
+    class Industry < IE::Base
       set_root_digits_count 10
 
       set_verify_digits_positions [8, 11]

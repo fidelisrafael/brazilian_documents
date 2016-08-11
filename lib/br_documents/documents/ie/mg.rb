@@ -1,6 +1,7 @@
 # http://www.sintegra.gov.br/Cad_Estados/cad_MG.html
 module BRDocuments
   class IE::MG < IE::Base
+
     set_verify_digits_weights first: %w(1 2 1 2 1 2 1 2 1 2 1 2),
                               last:  %w(3 2 11 10 9 8 7 6 5 4 3 2)
 
