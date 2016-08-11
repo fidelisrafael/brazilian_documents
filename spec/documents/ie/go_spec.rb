@@ -1,61 +1,31 @@
 require 'spec_helper'
+require_relative 'shared_examples'
 
 describe BRDocuments::IE::GO do
 
-  it 'must generate root numbers with fixed numbers' do
-    number = described_class.generate_root_numbers # without formatting
+  before :all do
 
-    initial_pos = described_class.initial_fix_numbers_position
-    fixed_numbers = described_class.fixed_initial_numbers
+    @format_examples = {
+      "101399693" => "10.139.969-3"
+    }
 
-    expect(number.slice(initial_pos, fixed_numbers.size)).to eq(fixed_numbers)
-  end
+    @valid_numbers = %w(
+      10.139.969-3
+      10139969-3
+      101399693
+    )
 
-  it 'generate documents must have valid fixed numbers' do
-    document = described_class.new(described_class.generate)
+    @invalid_numbers = %w(
+      10.139.969-31
+      10.139.96-31
+      110.139.969-3
+    )
 
-    expect(document.valid_fixed_numbers?).to be_truthy
-  end
+    @valid_verify_digits = {
+      [3] => %w(10.139.969-3 10.139.969 10139969)
+    }
 
-  it 'must generate valid IE' do
-    10.times { expect(described_class.valid?(described_class.generate)).to be_truthy }
-  end
-
-  it 'pretty formats an IE number' do
-    expect(described_class.pretty("101399693")).to eq("10.139.969-3")
-  end
-
-  it 'must prettify IE number including initial fixed numbers' do
-    number = described_class.generate
-
-    expect(number).to match(/\A#{described_class.fixed_initial_numbers.join}/)
-  end
-
-  it 'remove an IE number formatting' do
-    expect(described_class.strip('10.139.969-3')).to eq('101399693')
-  end
-
-  it 'must validate correctly valid IE numbers' do
-    expect(described_class.valid?('10.139.969-3')).to be_truthy
-    expect(described_class.valid?('10139969-3')).to be_truthy
-    expect(described_class.valid?('101399693')).to be_truthy
-  end
-
-  it 'is invalid with wrong digits number' do
-    expect(described_class.invalid?('10.139.969-31')).to be_truthy
-    expect(described_class.invalid?('110.139.969-3')).to be_truthy
-  end
-
-  it 'must calculate verify digits' do
-    expected = [3]
-
-    expect(described_class.calculate_verify_digits("10.139.969-3")).to eq(expected)
-    expect(described_class.calculate_verify_digits("10.139.969")).to eq(expected)
-    expect(described_class.calculate_verify_digits("10139969")).to eq(expected)
-  end
-
-  it 'must validate a list of valid IE' do
-    numbers = [
+    @valid_existent_numbers = [
       '10.139.969-3', # PANPHARMA DISTRIBUIDORA DE MEDICAMENTOS LTDA. 1990
       '10.013.357-6', # SANEAMENTO DE GOIAS S/A 09/07/1984
       '10.054.942-0', # CELG DISTRIBUICAO S.A. - CELG D 13/03/1989
@@ -70,13 +40,8 @@ describe BRDocuments::IE::GO do
       '10.005.565-6', # PRODUTOS ALIMENTICIOS ORLANDIA  1986
       '10.314.113-8', # SAUDE INDUSTRIA E COMERCIO DE AGUA MINERALE SERVIÇOS LTDA 1999
       '10.446.955-2', # 2009
-    ].each do |number|
-      ie_object = described_class.new(number)
-
-      expect(ie_object).to be_valid
-      expect(ie_object).to_not be_invalid
-      expect(ie_object.pretty).to eq(number)
-      expect(ie_object.strip).to eq(described_class.strip(number))
-    end
+    ]
   end
+
+  include_examples "IE basic specs"
 end
