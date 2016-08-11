@@ -9,7 +9,7 @@ module BRDocuments
 
     set_pretty_format_mask %(%s.%s-%s)
 
-    set_fixed_initial_numbers [2, 4]
+    set_fixed_digits [2, 4]
 
     def calc_verify_digit(quotient_rest)
       quotient_rest.to_i

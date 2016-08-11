@@ -14,14 +14,14 @@ module BRDocuments
           super.reverse
         end
 
-        def self.valid_fixed_numbers?(number)
+        def self.valid_fixed_digits?(number)
           number = new(number).normalize
           fixed_numbers = self.const_get('FIXED_INITIAL_NUMBERS')
 
-          fixed_numbers.member?(number[initial_fix_numbers_position].to_s)
+          fixed_numbers.member?(number[fixed_digits_positions].to_s)
         end
 
-        def self.fixed_initial_numbers
+        def self.fixed_digits
           [super.sample.to_i]
         end
       end

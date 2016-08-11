@@ -40,7 +40,7 @@ describe BRDocuments::IE::RJ do
 
   it 'must generate root numbers with fixed numbers' do
     fixed_numbers = described_class.const_get('FIXED_INITIAL_NUMBERS').map(&:to_s)
-    fixed_position = described_class.initial_fix_numbers_position
+    fixed_position = described_class.fixed_digits_positions
 
     10.times {
       numbers = described_class.generate_root_numbers

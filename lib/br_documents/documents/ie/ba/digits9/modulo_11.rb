@@ -11,7 +11,7 @@ module BRDocuments
       # 9 digits IE from bahia have FIXED NUMBER in the second position
       INITIAL_FIX_NUMBERS_POSITION = 1
 
-      def initial_fix_numbers_position
+      def fixed_digits_positions
         self.const_get('INITIAL_FIX_NUMBERS_POSITION')
       end
     end

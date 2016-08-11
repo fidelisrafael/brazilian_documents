@@ -17,57 +17,57 @@ module BRDocuments
       FIXED_INITIAL_NUMBERS = []
 
       def valid?
-        return false unless valid_fixed_numbers?
+        return false unless valid_fixed_digits?
 
         return super
       end
 
-      def valid_fixed_numbers?
-        return true unless validate_fixed_numbers?
+      def valid_fixed_digits?
+        return true unless validate_fixed_digits?
 
-        self.class.valid_fixed_numbers?(self.number)
+        self.class.valid_fixed_digits?(self.number)
       end
 
-      def validate_fixed_numbers?
+      def validate_fixed_digits?
         true
       end
 
       class << self
-        def valid_fixed_numbers?(number)
+        def valid_fixed_digits?(number)
           number = new(number).normalize
 
-          initial_pos = initial_fix_numbers_position
-          fixed_numbers = fixed_initial_numbers
+          initial_pos = fixed_digits_positions
+          fixed_numbers = fixed_digits
 
           return (number.slice(initial_pos, fixed_numbers.size) == fixed_numbers)
         end
 
         def generate_root_numbers
-          numbers = (root_digits_count - fixed_initial_numbers.size).times.map {
+          numbers = (root_digits_count - fixed_digits.size).times.map {
             get_generator_numbers.sample.to_i
           }
 
-          insert_fixed_numbers(numbers)
+          append_fixed_digits(numbers)
 
           numbers
         end
 
-        def initial_fix_numbers_position
+        def fixed_digits_positions
           self.const_get('INITIAL_FIX_NUMBERS_POSITION')
         end
 
-        def fixed_initial_numbers
+        def fixed_digits
           self.const_get('FIXED_INITIAL_NUMBERS')
         end
 
-        def set_fixed_initial_numbers(initial_numbers)
+        def set_fixed_digits(initial_numbers)
           self.const_set('FIXED_INITIAL_NUMBERS', initial_numbers).freeze
         end
 
         protected
-        def insert_fixed_numbers(numbers)
-          fixed_initial_numbers.each_with_index {|number, index|
-            numbers.insert(initial_fix_numbers_position + index, number)
+        def append_fixed_digits(numbers)
+          fixed_digits.each_with_index {|number, index|
+            numbers.insert(fixed_digits_positions + index, number)
           }
 
           numbers

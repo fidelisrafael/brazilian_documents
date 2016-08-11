@@ -5,8 +5,8 @@ RSpec.shared_examples "IE basic specs" do
 
     number = described_class.generate_root_numbers # without formatting
 
-    initial_pos = described_class.initial_fix_numbers_position
-    fixed_numbers = described_class.fixed_initial_numbers
+    initial_pos = described_class.fixed_digits_positions
+    fixed_numbers = described_class.fixed_digits
 
     expect(number.slice(initial_pos, fixed_numbers.size)).to eq(fixed_numbers)
   end
@@ -14,7 +14,7 @@ RSpec.shared_examples "IE basic specs" do
   it 'generate documents must have valid fixed numbers' do
     document = described_class.new(described_class.generate)
 
-    expect(document.valid_fixed_numbers?).to be_truthy
+    expect(document.valid_fixed_digits?).to be_truthy
   end
 
   it 'must generate valid IE' do
@@ -37,7 +37,7 @@ RSpec.shared_examples "IE basic specs" do
     10.times {
       number = described_class.generate
 
-      expect(number).to match(/\A#{described_class.fixed_initial_numbers.join}/)
+      expect(number).to match(/\A#{described_class.fixed_digits.join}/)
     }
   end
 

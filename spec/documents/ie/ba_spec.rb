@@ -60,7 +60,7 @@ describe BRDocuments::IE::BA do
       klass = described_class.const_get(class_name)
 
       fixed_numbers = klass.const_get('FIXED_INITIAL_NUMBERS').map(&:to_i)
-      fixed_position = klass.initial_fix_numbers_position
+      fixed_position = klass.fixed_digits_positions
 
       100.times {
         numbers = klass.generate_root_numbers

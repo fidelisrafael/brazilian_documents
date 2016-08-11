@@ -7,17 +7,17 @@ module BRDocuments
 
     set_pretty_format_mask %(%s.%s-%s)
 
+    set_fixed_digits [0, 3]
+
     # In RANGE_VALUES we remove the first '0' character so
     # numbers are't treated as octal numberss
-    # see: :obtain_magic_number_for method
+    # see: :obtain_range_aux_value method
     RANGE_VALUES = {
       3000001..3017000 => [5, 0],
       3017001..3019022 => [9, 1]
     }.freeze
 
     DEFAULT_RANGE_CONF = [0, 0]
-
-    set_fixed_initial_numbers [0, 3]
 
     def range_aux_values_hash
       range_conf = obtain_range_aux_value(@number.dup)
@@ -41,11 +41,11 @@ module BRDocuments
     end
 
     private
-    def obtain_range_aux_value(document_number)
-      remove_verify_digits(document_number)
+    def obtain_range_aux_value(number)
+      remove_verify_digits(number)
 
       # remove first '0' digit so number is not a octal
-      number = (stripped(document_number)[1..-1]).to_i
+      number = (stripped(number)[1..-1]).to_i
 
       # We try to check if `number` is include in one of the pre defined range
       range_conf = RANGE_VALUES.map do |range, aux_values|

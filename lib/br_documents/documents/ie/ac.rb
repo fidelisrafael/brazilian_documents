@@ -8,6 +8,6 @@ module BRDocuments
 
     set_pretty_format_mask %(%s.%s.%s/%s-%s)
 
-    set_fixed_initial_numbers [0, 1]
+    set_fixed_digits [0, 1]
   end
 end
