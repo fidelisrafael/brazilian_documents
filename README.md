@@ -148,12 +148,16 @@ Além disso, alguns estados possuem **mais de 1 padrão de inscrição estadual 
 ### Gerar números
 
 ```ruby
-BRDocuments::IE::{ESTADO}.generate
+# BRDocuments::IE::{ESTADO}.generate
 # {ESTADO} deve ser a sigla de cada unidade federativa do Brasil
 # Para consultar todas as unidades federativas:
 
 BRDocuments::IE.available_states
-=> ["AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SE", "SP", "TO"]
+=> [
+  "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO",
+  "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR",
+  "RJ", "RN", "RO", "RR", "RS", "SE", "SP", "TO"
+]
 
 ## Ex
 
