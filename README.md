@@ -33,8 +33,6 @@ Ou então instale separadamente (e globalmente) com:
 
 ## Como usar
 
-Entenda que a proposta dessa gem não é gerar número de documentos, somente validar! A ideia é ser pequena e portátil.
-
 ### API
 
 #### Observação:
