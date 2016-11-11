@@ -184,17 +184,17 @@ BRDocuments::IE::BA.generate
 
 # BA Atual - 9 dígitos - modulo 11
 # SEGUNDO dígito da I.E: 6, 7 ou 9
-BRDocuments::IE::BA.generate(true, 9, 11)
+BRDocuments::IE::BA.generate(formatted = true, digits = 9, module = 11)
 => "273.854.609"
 
 # BA legado - 8 dígitos - modulo 10
 # PRIMEIRO dígito da I.E: 0,1,2,3,4,5,8
-BRDocuments::IE::BA.generate(true, 8, 10)
+BRDocuments::IE::BA.generate(formatted = true, digits = 8, module = 10)
 => "476.354.65"
 
 # BA legado - 8 dígitos - modulo 11
 # PRIMEIRO dígito da I.E:  6, 7 ou 9
-BRDocuments::IE::BA.generate(true, 8, 11)
+BRDocuments::IE::BA.generate(formatted = true, digits = 8, module = 11)
 => "612.733.29"
 ```
 
@@ -206,7 +206,7 @@ BRDocuments::IE::PE.generate
 => "6920752-67"
 
 # Padrão antigo: 13 dígitos + 1 dígito verificador
-BRDocuments::IE::PE.generate(true, true)
+BRDocuments::IE::PE.generate(formatted = true, legacy = true)
 => "01.3.667.8339833-8"
 
 # Checar se número é do padrão legado
@@ -222,7 +222,7 @@ BRDocuments::IE::RO.generate
 => "0000000081197-1"
 
 # Padrão legado: 3 dígitos(município) + 5 dígitos(inscrição) + 1 dígito verificador
-BRDocuments::IE::RO.generate(true, true)
+BRDocuments::IE::RO.generate(formatted = true, legacy = true)
 => "557.88373-5"
 
 # Para converter um número do padrão legado para o padrão atual:
@@ -248,7 +248,7 @@ BRDocuments::IE::SP.generate
 # Padrão de Produtor Rural
 # P + 11 dígitos + 1 dígito verificador
 # OBS: O digíto verificador fica na oitava posição do número
-BRDocuments::IE::SP.generate(true, true)
+BRDocuments::IE::SP.generate(formatted = true, legacy = true)
 => "P-54855620.8/324"
 
 
