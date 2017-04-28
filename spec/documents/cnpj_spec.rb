@@ -92,4 +92,15 @@ describe BRDocuments::CNPJ do
       expect(described_class.valid?(generated_doc)).to eq(true)
     end
   end
+
+  it 'must correctly mark documents with repeated pattern as invalid' do
+    patterns = %w(00.000.000/0000-00 11.111.111/1111-11 22.222.222/2222-22
+                  33.333.333/3333-33 44.444.444/4444-44 55.555.555/5555-55
+                  66.666.666/6666-66 77.777.777/7777-77 88.888.888/8888-88
+                  99.999.999/9999-99)
+
+    patterns.each do |number|
+      expect(described_class.valid?(number)).to be false
+    end
+  end
 end
