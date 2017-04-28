@@ -16,5 +16,12 @@ module BRDocuments
 
     # numbers sampled to generate new document numbers
     set_generator_numbers (0..9).to_a
+
+    def valid?
+      # This avoid numbers like: "00.000.000/0000-00" being calculate as valid
+      return false if normalize.uniq.size == 1
+
+      super
+    end
   end
 end
