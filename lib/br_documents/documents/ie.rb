@@ -29,6 +29,7 @@ module BRDocuments
       'RO',
       'RR',
       'RS',
+      'SC',
       'SE',
       'SP',
       'TO'
