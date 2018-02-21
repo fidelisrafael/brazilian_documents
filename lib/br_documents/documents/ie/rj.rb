@@ -8,7 +8,7 @@ module BRDocuments
 
     set_pretty_format_mask %(%s.%s.%s)
 
-    set_fixed_digits (70..99).to_a
+    set_fixed_digits (11..99).to_a
 
     def self.valid_fixed_digits?(number)
       number = new(number).normalize
