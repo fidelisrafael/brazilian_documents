@@ -1,5 +1,11 @@
 # Brazilian Documents
 
+[![Build Status](https://travis-ci.org/fidelisrafael/brazilian_documents.svg?branch=master)](https://travis-ci.org/fidelisrafael/brazilian_documents)  
+
+[![Gem Version](https://badge.fury.io/rb/brazilian_documents.svg)](https://badge.fury.io/rb/brazilian_documents)  
+
+---
+
 Esta gem tem como proposta ser um repositório com os principais validadores de documentos **oficiais do Brasil**.
 Atualmente existem **validadores e geradores** para os seguintes documentos:
 
