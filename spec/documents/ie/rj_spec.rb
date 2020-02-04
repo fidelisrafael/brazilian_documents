@@ -37,6 +37,7 @@ describe BRDocuments::IE::RJ do
       '78.166.886', # MUNDO POPULAR BAZAR LTDA
       '92.013.405', # CREDEAL MANUFATURA DE PAPEIS LTDA
       '11.075.169', # ATACADAO S/A
+      '10.012.040', # FUNDACAO COPPETEC
     ]
   end
 
