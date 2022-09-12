@@ -6,19 +6,25 @@ describe BRDocuments::IE::CE do
   before :all do
 
     @format_examples = {
-      "060000015" => "06.000001-5"
+      "060000015" => "06.000001-5",
+      "070558604" => "07.055860-4"
     }
 
     @valid_numbers = %w(
       060000015
       06.000.001-5
       06000001-5
+      070558604
+      07.055.860-4
     )
 
     @invalid_numbers = %w(
       0600000151
       1060000015
       060000051
+      070558601
+      0705586041
+      1070558604
     )
 
     @valid_verify_digits = {
@@ -38,6 +44,7 @@ describe BRDocuments::IE::CE do
       '06.276959-6', # ESMALTEC S A
       '06.666801-8', # CGTF CENTRAL GERADORA TERMELETRICA FORTALEZA S A
       '06.859236-1', # COMPANHIA DE AGUA E ESGOTO DO CEARA CAGECE
+      '07.055860-4', # SOME RANDOM NUMBERS STARTED WITH 7
     ]
   end
 
