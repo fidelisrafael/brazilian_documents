@@ -7,7 +7,7 @@ module BRDocuments
     set_division_modulo 11
 
     # remove any non digit from document number
-    set_clear_number_regexp %r{[^(\d+)]}
+    set_clear_number_regexp %r{\D}
 
     # match format such as: 99.999.999/9999-99 | 99-999-999/9999-99 | 99999999/999999 | 99999999999999
     set_format_regexp %r{(\d{2})[-.]?(\d{3})[-.]?(\d{3})[\/]?(\d{4})[-.]?(\d{2})}
